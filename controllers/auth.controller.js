@@ -61,7 +61,6 @@ const signIn = async (req, res, next) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "none",
-        domain: "https://todo-grids.vercel.app",
       })
       .status(200)
       .json(userWithoutPassword);
@@ -91,7 +90,6 @@ const google = async (req, res, next) => {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "none",
-          domain: "https://todo-grids.vercel.app",
         })
         .status(200)
         .json(userWithoutPassword);
@@ -120,7 +118,6 @@ const google = async (req, res, next) => {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "none",
-          domain: "https://todo-grids.vercel.app",
         })
         .status(200)
         .json({
