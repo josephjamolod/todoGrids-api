@@ -53,7 +53,11 @@ const requestResetPass = async (req, res, next) => {
       _id: user._id,
     });
     res
-      .cookie("reset_token", token, { httpOnly: true })
+      .cookie("reset_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      })
       .status(200)
       .json({ msg: "Email sent! Check your inbox or spam folder." });
   } catch (error) {

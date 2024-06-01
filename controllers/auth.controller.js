@@ -57,7 +57,11 @@ const signIn = async (req, res, next) => {
     const userWithoutPassword = await User.findById(user).select("-password");
 
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      })
       .status(200)
       .json(userWithoutPassword);
   } catch (error) {
@@ -82,7 +86,11 @@ const google = async (req, res, next) => {
       const token = await user.createJWT();
       const userWithoutPassword = await User.findById(user).select("-password");
       res
-        .cookie("access_token", token, { httpOnly: true })
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        })
         .status(200)
         .json(userWithoutPassword);
     } else {
@@ -106,7 +114,11 @@ const google = async (req, res, next) => {
       // console.log(newUserWithoutPassword);
 
       res
-        .cookie("access_token", token, { httpOnly: true })
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+        })
         .status(200)
         .json({
           ...newUserWithoutPassword.toObject(),
