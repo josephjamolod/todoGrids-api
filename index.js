@@ -2,20 +2,19 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const cors = require("cors");
-const path = require("path");
 require("dotenv").config();
+const path = require("path");
+const connectDB = require("./connectDb/connect");
 
 // CORS Configuration
 const corsOptions = {
-  origin: "https://todo-grids.vercel.app",
+  origin: ["https://todo-grids.vercel.app"], // Replace with your client deployment URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
-
-// Middleware to access req.body and parse cookies
 app.use(express.json());
 app.use(cookieParser());
 
@@ -28,14 +27,6 @@ const userTask = require("./routes/task");
 app.use("/api/auth", authUser);
 app.use("/api/reset-password", resetPass);
 app.use("/api/task", userTask);
-
-// // Serve static files from the React frontend app
-// app.use(express.static(path.join(__dirname, "client", "dist")));
-
-// // Handles any requests that don't match the ones above
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -50,7 +41,6 @@ app.use((err, req, res, next) => {
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 3000;
-const connectDB = require("./connectDb/connect");
 
 const start = async () => {
   try {
