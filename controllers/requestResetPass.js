@@ -56,7 +56,7 @@ const requestResetPass = async (req, res, next) => {
       .cookie("reset_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
       })
       .status(200)
       .json({ msg: "Email sent! Check your inbox or spam folder." });
