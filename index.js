@@ -7,7 +7,7 @@ require("dotenv").config();
 
 // CORS Configuration
 const corsOptions = {
-  origin: "https://todo-app-lake-two-69.vercel.app",
+  origin: "https://todo-grids.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
