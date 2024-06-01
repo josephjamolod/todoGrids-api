@@ -57,6 +57,7 @@ const requestResetPass = async (req, res, next) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "none",
+        domain: "todo-grids.vercel.app",
       })
       .status(200)
       .json({ msg: "Email sent! Check your inbox or spam folder." });
