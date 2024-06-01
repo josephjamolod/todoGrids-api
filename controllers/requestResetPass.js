@@ -56,7 +56,11 @@ const requestResetPass = async (req, res, next) => {
       .cookie("reset_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
+<<<<<<< HEAD
         sameSite: "None",
+=======
+        sameSite: "none",
+>>>>>>> 87fe08afa2f71467038d2f37545fe755b0f9752a
         domain: "todo-grids.vercel.app",
       })
       .status(200)

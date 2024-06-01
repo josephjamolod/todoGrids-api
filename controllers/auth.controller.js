@@ -60,8 +60,7 @@ const signIn = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
-        domain: "todo-grids.vercel.app",
+        sameSite: "none",
       })
       .status(200)
       .json(userWithoutPassword);
@@ -90,8 +89,7 @@ const google = async (req, res, next) => {
         .cookie("access_token", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "None",
-          domain: "todo-grids.vercel.app",
+          sameSite: "none",
         })
         .status(200)
         .json(userWithoutPassword);
@@ -119,8 +117,7 @@ const google = async (req, res, next) => {
         .cookie("access_token", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "None",
-          domain: "todo-grids.vercel.app",
+          sameSite: "none",
         })
         .status(200)
         .json({
