@@ -55,13 +55,16 @@ const signIn = async (req, res, next) => {
   try {
     const token = await user.createJWT();
     const userWithoutPassword = await User.findById(user).select("-password");
+    const cookieOptions = {
+      httpOnly: true,
+      sameSite: "None",
+    };
+    if (process.env.NODE_ENV === "production") {
+      cookieOptions.secure = true;
+    }
 
     res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
-      })
+      .cookie("access_token", token, cookieOptions)
       .status(200)
       .json(userWithoutPassword);
   } catch (error) {
@@ -85,12 +88,16 @@ const google = async (req, res, next) => {
       }
       const token = await user.createJWT();
       const userWithoutPassword = await User.findById(user).select("-password");
+      const cookieOptions = {
+        httpOnly: true,
+        sameSite: "None",
+      };
+      if (process.env.NODE_ENV === "production") {
+        cookieOptions.secure = true;
+      }
+
       res
-        .cookie("access_token", token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "None",
-        })
+        .cookie("access_token", token, cookieOptions)
         .status(200)
         .json(userWithoutPassword);
     } else {
@@ -112,13 +119,16 @@ const google = async (req, res, next) => {
       sendDefaultPasswordMail({ email, password: generatedPassword, name });
       //console.log({ ...newUserWithoutPassword, msg: "New User" });
       // console.log(newUserWithoutPassword);
+      const cookieOptions = {
+        httpOnly: true,
+        sameSite: "None",
+      };
+      if (process.env.NODE_ENV === "production") {
+        cookieOptions.secure = true;
+      }
 
       res
-        .cookie("access_token", token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "None",
-        })
+        .cookie("access_token", token, cookieOptions)
         .status(200)
         .json({
           ...newUserWithoutPassword.toObject(),

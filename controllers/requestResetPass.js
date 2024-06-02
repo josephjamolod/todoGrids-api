@@ -52,13 +52,17 @@ const requestResetPass = async (req, res, next) => {
       email: user.email,
       _id: user._id,
     });
+
+    const cookieOptions = {
+      httpOnly: true,
+      sameSite: "None",
+    };
+    if (process.env.NODE_ENV === "production") {
+      cookieOptions.secure = true;
+    }
+
     res
-      .cookie("reset_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
-        domain: "todo-grids.vercel.app",
-      })
+      .cookie("reset_token", token, cookieOptions)
       .status(200)
       .json({ msg: "Email sent! Check your inbox or spam folder." });
   } catch (error) {
