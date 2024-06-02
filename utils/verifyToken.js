@@ -17,7 +17,7 @@ const verifyToken = (req, res, next) => {
 
 const checkToken = (req, res, next) => {
   const token = req.cookies.access_token;
-
+  console.log(req.cookies);
   try {
     if (!token) {
       return res.status(200).json({ msg: "No token" });
