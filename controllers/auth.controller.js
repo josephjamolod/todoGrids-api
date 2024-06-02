@@ -56,8 +56,8 @@ const signIn = async (req, res, next) => {
     const token = await user.createJWT();
     const userWithoutPassword = await User.findById(user).select("-password");
     const cookieOptions = {
-      httpOnly: true,
       secure: true,
+      httpOnly: true,
     };
 
     res
@@ -86,8 +86,8 @@ const google = async (req, res, next) => {
       const token = await user.createJWT();
       const userWithoutPassword = await User.findById(user).select("-password");
       const cookieOptions = {
-        httpOnly: true,
         secure: true,
+        httpOnly: true,
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
@@ -117,8 +117,8 @@ const google = async (req, res, next) => {
       //console.log({ ...newUserWithoutPassword, msg: "New User" });
       // console.log(newUserWithoutPassword);
       const cookieOptions = {
-        httpOnly: true,
         secure: true,
+        httpOnly: true,
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;

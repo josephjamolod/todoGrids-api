@@ -54,8 +54,8 @@ const requestResetPass = async (req, res, next) => {
     });
 
     const cookieOptions = {
-      httpOnly: true,
       secure: true,
+      httpOnly: true,
     };
     if (process.env.NODE_ENV === "production") {
       cookieOptions.secure = true;
