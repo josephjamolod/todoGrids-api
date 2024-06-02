@@ -57,11 +57,9 @@ const signIn = async (req, res, next) => {
     const userWithoutPassword = await User.findById(user).select("-password");
     const cookieOptions = {
       httpOnly: true,
-      sameSite: "None",
+      secure: true,
+      sameSite: "Lax",
     };
-    if (process.env.NODE_ENV === "production") {
-      cookieOptions.secure = true;
-    }
 
     res
       .cookie("access_token", token, cookieOptions)
@@ -90,7 +88,8 @@ const google = async (req, res, next) => {
       const userWithoutPassword = await User.findById(user).select("-password");
       const cookieOptions = {
         httpOnly: true,
-        sameSite: "None",
+        secure: true,
+        sameSite: "Lax",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
@@ -121,7 +120,8 @@ const google = async (req, res, next) => {
       // console.log(newUserWithoutPassword);
       const cookieOptions = {
         httpOnly: true,
-        sameSite: "None",
+        secure: true,
+        sameSite: "Lax",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
