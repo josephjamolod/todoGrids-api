@@ -58,7 +58,6 @@ const signIn = async (req, res, next) => {
     const cookieOptions = {
       httpOnly: true,
       secure: true,
-      sameSite: "Lax",
     };
 
     res
@@ -89,7 +88,6 @@ const google = async (req, res, next) => {
       const cookieOptions = {
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
@@ -121,7 +119,6 @@ const google = async (req, res, next) => {
       const cookieOptions = {
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
