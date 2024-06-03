@@ -58,6 +58,7 @@ const signIn = async (req, res, next) => {
     const cookieOptions = {
       secure: true,
       httpOnly: true,
+      sameSite: "None",
     };
 
     res
@@ -88,6 +89,7 @@ const google = async (req, res, next) => {
       const cookieOptions = {
         secure: true,
         httpOnly: true,
+        sameSite: "None",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
@@ -119,6 +121,7 @@ const google = async (req, res, next) => {
       const cookieOptions = {
         secure: true,
         httpOnly: true,
+        sameSite: "None",
       };
       if (process.env.NODE_ENV === "production") {
         cookieOptions.secure = true;
